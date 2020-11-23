@@ -10,7 +10,7 @@ function App() {
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    db.collection('todos').onSnapshot(snapshot => {
+    db.collection('todos').orderBy('timestamp','asc').onSnapshot(snapshot => {
       setTodos(snapshot.docs.map(doc => ({id: doc.id ,todo: doc.data().todo})))
     })
   }, []);
